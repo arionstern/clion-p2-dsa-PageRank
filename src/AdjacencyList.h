@@ -1,15 +1,19 @@
 #pragma once
 
 #include <string>
+#include <unordered_map>
+#include <vector>
+#include <set>
 
 using namespace std;
 
 class AdjacencyList {
-    private:
-    //Think about what member variables you need to initialize
-    public:
-    //Think about what helper functions you will need in the algorithm
-    string PageRank(int n);
-};
+private:
+    unordered_map<string, vector<string>> outgoingEdges;
+    unordered_map<string, vector<string>> incomingEdges;
+    set<string> allPages;
 
-// This class and method are optional.
+public:
+    void addEdge(const string& from, const string& to);
+    string PageRank(int powerIterations);
+};

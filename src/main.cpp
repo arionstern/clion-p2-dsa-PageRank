@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>  
 
 #include "AdjacencyList.h"
 
@@ -6,14 +7,28 @@ using namespace std;
 
 int main() {
     int no_of_lines, power_iterations;
-    string from, to;
-    cin >> no_of_lines;
-    cin >> power_iterations;
-    for (int i = 0; i < no_of_lines; i++) {
-        cin >> from;
-        cin >> to;
-        // Do Something
+    cin >> no_of_lines >> power_iterations;
+    cin.ignore(); // ignore leftover newline
+
+    AdjacencyList graph;
+
+    // Read each edge (from and to) and add it to the graph
+    for (int i = 0; i < no_of_lines; ++i) {
+        string line;
+        getline(cin, line);
+        istringstream in(line);
+
+        string from, to;
+        in >> from >> to;
+
+        // Add edge to AdjacencyList
+        graph.addEdge(from, to);
+
     }
-    //Create a graph object
-    // Created_Graph.PageRank(power_iterations);}
+
+    // Calculate PageRank and print output
+    graph.PageRank(power_iterations);
+
+    return 0;
 }
+
